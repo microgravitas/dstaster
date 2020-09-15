@@ -18,7 +18,8 @@ colors = {
     'green': '#45cc37',
     'yellow': '#fecb51',
     'gray': '#727377',
-    'lightgray': '#ced1db'
+    'lightgray': '#ced1db',
+    'lightestgray' '#f5f6fa'
 }
 
 # Colour gradient for confusion matrices. Includes white as 0 colour as means

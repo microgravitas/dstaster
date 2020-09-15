@@ -8,6 +8,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:export-ydpi="100.6"
+   inkscape:export-xdpi="100.6"
+   inkscape:export-filename="/home/felix/git/teaching/dstaster/images/manhattan-travel.png"
    inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
    sodipodi:docname="manhattan.svg"
    id="svg1821"
@@ -32,9 +35,9 @@
      inkscape:document-rotation="0"
      inkscape:current-layer="layer1"
      inkscape:document-units="mm"
-     inkscape:cy="176.50752"
-     inkscape:cx="392.70003"
-     inkscape:zoom="0.7"
+     inkscape:cy="286.45906"
+     inkscape:cx="545.72536"
+     inkscape:zoom="0.98994949"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      borderopacity="1.0"
@@ -10017,11 +10020,11 @@ kFGwTQghhBBCCCGEBNl/AP8/H1eA+Q9XAAAAAElFTkSuQmCC
        x="-27.615026"
        y="19.041803" />
     <path
-       style="fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M -12.468948,143.19504 212.40358,66.181726"
        id="path2498" />
     <path
-       style="fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M -12.468948,143.19504 32.132502,61.763118 67.347561,81.594242 73.017709,70.415625 143.05986,110.22503 165.9009,67.872308 200.8321,88.294153 212.40358,66.181726"
        id="path2496" />
     <g
@@ -10094,11 +10097,11 @@ kFGwTQghhBBCCCGEBNl/AP8/H1eA+Q9XAAAAAElFTkSuQmCC
     <path
        id="path2494"
        d="M -12.468948,143.19504 32.132502,61.763118 67.347561,81.594242 73.017709,70.415625 143.05986,110.22503 165.9009,67.872308 200.8321,88.294153 212.40358,66.181726"
-       style="fill:none;stroke:#0077b5;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+       style="fill:none;stroke:#0077b5;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <path
        id="path2492"
        d="M -12.468948,143.19504 212.40358,66.181726"
-       style="fill:none;stroke:#de00a5;stroke-width:1.865;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+       style="fill:none;stroke:#de00a5;stroke-width:1.865;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <g
        id="g2509">
       <circle
