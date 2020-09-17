@@ -12,8 +12,31 @@ h2 { margin-top: 2em !important; }
     width: 50% !important; 
     min-width: 800px;
     font-size: 12pt;
+    line-height: 18pt;
 }
 
+/*
+    Apply color scheme
+*/
+.edit_mode div.cell.selected::before {
+    background-color: #45cc37;
+}
+      
+.edit_mode div.cell.selected {
+    border-color: #45cc37;
+}
+    
+div.cell.selected::before,
+div.cell.selected.jupyter-soft-selected::before {
+    background-color: #0077b5;
+}
+
+div.input_prompt { color: #0077b5; }
+div.output_prompt { color: #ff4a6e; }
+
+/*
+  Adjust widget look (only sliders for now)
+*/
 .jupyter-widgets .widget-slider {
     padding: 25px 10px;
     border: 1px solid #ced1db;
@@ -28,14 +51,17 @@ h2 { margin-top: 2em !important; }
 
 .jupyter-widgets label {
     width: auto;
-}b
+}
 
 .jupyter-widgets .widget-readout {
     background-color: #fff;
 }
 
+/* 
+    Style for 'hidden code' cells
+*/
 .hidden_code .input_area  {
-    max-height: 2em;
+    max-height: 4em;
     overflow: hidden;
 }
 
@@ -54,6 +80,95 @@ h2 { margin-top: 2em !important; }
 
 .hidden_bar button:hover { background-color: #ff4a6e ; }
 
+.hidden_code .input_area {
+    position: relative;
+    border-bottom: 1px solid #eee;
+}
+
+.hidden_code .input_area:after {
+    content: " ";
+    z-index: 10;
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, .5);
+    background: -webkit-linear-gradient(rgba(255, 255, 255, .5), #fff) left repeat;
+    background: linear-gradient(rgba(255, 255, 255, .5), #fff) left repeat;     
+}
+
+/*
+    Custom error messages (see error(...) below)
+*/
+.output_area .error {
+    border: 2px solid #ff4a6e;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.error .title {
+    background-color: #ff4a6e;
+    padding-top: 5px;
+    text-indent: 1ex;
+}
+.error .title b { color: #fff; }
+      
+.error .msg {
+    margin: 1ex;
+}
+
+/*
+    Custom markup
+*/
+
+.note {
+    font-size: 11pt;
+    line-height: 12pt;
+    font-style: italic;
+    margin: 1ex 2ex;
+}
+
+.task .no {
+    font-size: 25pt;
+    line-height: 40pt;
+    text-align: center;    
+    color: #fff;
+    flex: 0 0 35pt;    
+    margin: 10pt 10pt 10pt 5pt;
+    position: relative;
+    z-index: 10;
+}
+
+.task .no:after {
+    content: '';
+    background-color: #0077b5;
+    border-radius: 50%;            
+    display: block;
+    float: left;
+    width: 35pt;
+    height: 35pt;    
+    margin-right: -35pt;
+    position: relative;
+    bottom: 0;
+    z-index: -1;
+}
+
+.task .text {
+    flex-grow: 1;
+    align-self: center;
+    padding-right: 20pt;
+}
+
+.task {
+    font-size: 110%;
+    line-height: 115%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: start;
+    margin: 1em 0em 0em 0em;
+}
 </style>
 """))
 
@@ -62,7 +177,6 @@ h2 { margin-top: 2em !important; }
 display(HTML("""
 <script>
 $(function() {
-console.log('CALLED');
 var cells = Jupyter.notebook.get_cells();
 for(c of cells) {
     if(c._metadata['hidden']) {
@@ -75,21 +189,23 @@ for(c of cells) {
                 '<button>Show code</button>'+
                 '</div>'
             )
-            var hidden = true;
-            $(c.element).find(".hidden_bar button")
-            .click(function() {
-                if(hidden) {
-                    $(this).parent().parent().removeClass("hidden_code");
-                    $(this).text("Hide code");
-                } else {
-                    $(this).parent().parent().addClass("hidden_code");
-                    $(this).text("Show code");
-                }
-                hidden = !hidden;
-            });
-            
-            //.text('test')
+        } else {
+            // Reset state
+            $(c.element).find(".hidden_bar button").text("Show code");
         }
+
+        var hidden = true;
+        $(c.element).find(".hidden_bar button")
+        .click(function() {
+            if(hidden) {
+                $(this).parent().parent().removeClass("hidden_code");
+                $(this).text("Hide code");
+            } else {
+                $(this).parent().parent().addClass("hidden_code");
+                $(this).text("Show code");
+            }
+            hidden = !hidden;
+        });
     }
 }
 });
@@ -107,7 +223,7 @@ mpl.rcParams.update({
 colors = {
     'blue': '#0077b5',
     'pink': '#de00a5',
-    'salmon': '#ff4a6e',
+    'hotpink': '#ff4a6e',
     'purple': '#8700cd',
     'green': '#45cc37',
     'yellow': '#fecb51',
@@ -120,8 +236,8 @@ colors = {
 cmap_confusion = [(0,'#ffffff'),
         (0.0000001, colors['blue']),
         (.33, '#9c95c2'),
-        (.66,colors['salmon']),
-        (1,colors['salmon'])]
+        (.66,colors['hotpink']),
+        (1,colors['hotpink'])]
 cmap_confusion = mpl.colors.LinearSegmentedColormap.from_list('confusion', cmap_confusion)
 
 
@@ -178,35 +294,19 @@ def plot_confusion_matrix(truth, pred, labels, ax, cmap=None):
 
 
 """
-    The following is adapted from
-        https://stackoverflow.com/questions/31517194/how-to-hide-one-specific-cell-input-or-output-in-ipython-notebook
+    Custom error messages. error(...) will display a nice css-styled
+    error message and abort the current cell execution by raising a 
+    (quiet) exception.
 """
-import random
+class StopExecution(Exception):
+    def _render_traceback_(self):
+        pass 
 
-def hide_toggle(for_next=False):
-    this_cell = """$('div.cell.code_cell.rendered.selected')"""
-    next_cell = this_cell + '.next()'
-
-    toggle_text = 'Toggle show/hide'  # text shown on toggle link
-    target_cell = this_cell  # target cell to control with toggle
-    js_hide_current = this_cell + '.find("div.input").hide();'
-
-    if for_next:
-        target_cell = next_cell
-        toggle_text += ' next cell'
-
-    js_f_name = 'code_toggle_{}'.format(str(random.randint(1,2**64)))
-
-    html = f"""
-        <script>
-            function {js_f_name}() {{
-                {target_cell}.find('div.input').toggle();
-            }}
-
-            {js_hide_current}
-        </script>
-
-        <a href="javascript:{js_f_name}()">{toggle_text}</a>
-    """
-
-    return HTML(html)
+def error(title, msg):
+    display(HTML(f"""
+        <div class="error">
+            <div class="title"><b>Error:</b> {title}</div>
+            <div class="msg">{msg}</div>
+        </div>
+    """))
+    raise StopExecution
