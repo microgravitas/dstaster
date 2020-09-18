@@ -169,6 +169,28 @@ div.output_prompt { color: #ff4a6e; }
     align-items: start;
     margin: 1em 0em 0em 0em;
 }
+
+/*
+  CSS-only hints that can be revealed via :focus.
+*/
+
+.hints li { margin-bottom: 1ex; }
+
+.hints li button {
+    background-color: #727377;
+    border: 0;
+    padding: 2pt 8pt;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.hints li div {
+    display: none;
+}
+
+.hints li button:hover { background-color: #ff4a6e ; }
+.hints li button:focus ~ div { display: block ; }
+
 </style>
 """))
 
