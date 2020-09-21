@@ -69,7 +69,6 @@ define([
 
         var cells = Jupyter.notebook.get_cells();
         for(var cell of cells) {
-          console.log(cell);
           modify_output(cell);
         }
 

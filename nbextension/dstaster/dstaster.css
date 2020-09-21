@@ -184,8 +184,4 @@ div.output_prompt { color: #ff4a6e; }
 }
 .hints li button:hover { background-color: #ff4a6e ; }
 
-.dst-modified { border: 1px solid red !important; }
-
-/* OLD: CSS-only hints that can be revealed via :focus.
-.hints li button:focus ~ div { display: block ; }
-*/
+/* .dst-modified { border: 1px solid red !important; } */
