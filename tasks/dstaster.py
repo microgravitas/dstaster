@@ -3,10 +3,7 @@
 """
 # Settings and visuals
 import matplotlib as mpl
-
-mpl.rcParams.update({
-    "legend.fancybox": False
-})
+from cycler import cycler
 
 colors = {
     'blue': '#0077b5',
@@ -18,6 +15,14 @@ colors = {
     'gray': '#727377',
     'lightgray': '#ced1db'
 }
+
+color_cycler = cycler('color', [colors[n] for n in ['blue', 'pink', 'yellow', 'green', 'purple', 'hotpink']])
+
+mpl.rcParams.update({
+    "legend.fancybox": False,
+    "axes.prop_cycle": color_cycler
+})
+
 
 # Colour gradient for confusion matrices. Includes white as 0 colour as means
 # to keep the diagonal of the matrix uncoloured.
@@ -83,6 +88,8 @@ def plot_confusion_matrix(truth, pred, labels, ax, cmap=None):
     error message and abort the current cell execution by raising a
     (quiet) exception.
 """
+from IPython.core.display import HTML
+
 class StopExecution(Exception):
     def _render_traceback_(self):
         pass
