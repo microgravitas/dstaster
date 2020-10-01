@@ -5,6 +5,9 @@
 import matplotlib as mpl
 from cycler import cycler
 
+from ipywidgets import *
+import ipywidgets as widgets
+
 colors = {
     'blue': '#0077b5',
     'pink': '#de00a5',
@@ -32,6 +35,17 @@ cmap_confusion = [(0,'#ffffff'),
         (.66,colors['hotpink']),
         (1,colors['hotpink'])]
 cmap_confusion = mpl.colors.LinearSegmentedColormap.from_list('confusion', cmap_confusion)
+
+# Colour gradient for distances which marks the `zero distance' in green.
+cmap_distance = [(0, colors['green']),
+        (0.00001, colors['lightgray']),
+        (0.35, colors['lightgray']),
+        (.4, '#9c95c2'),
+        (.5, colors['hotpink']),
+        (.6, '#9c95c2'),
+        (0.65, colors['lightgray']),                 
+        (1, colors['lightgray'])]
+cmap_distance = mpl.colors.LinearSegmentedColormap.from_list('distance', cmap_distance)
 
 """
     Common imports

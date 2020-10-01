@@ -43,22 +43,40 @@ div.input_prompt { color: #0077b5; }
 div.output_prompt { color: #ff4a6e; }
 
 /*
-  Adjust widget look (only sliders for now)
+  Adjust widget look 
 */
-.jupyter-widgets .widget-slider {
-    padding: 25px 10px;
+
+.widget-hslider { height: auto !important; }
+
+.jupyter-widgets:not(.widget-interact) {
+    padding: 10px;
     border: 1px solid #ced1db;
     border-radius: 2px;
     margin: 10px auto;
     background-color: #f5f6fa;
 }
 
+/*
+.jupyter-widgets > :first-child {
+    margin-left: 20px;
+}
+
+.jupyter-widgets > * {
+    margin-top: 10px;
+    margin-bottom: 10px !important;
+    border: 1px solid red;
+}
+*/
 .jupyter-widgets label, .jupyter-widgets .widget-readout {
     font-size: 14pt;
 }
 
+.jupyter-widgets .widget-radio-box label {
+    font-size: 12pt;
+}
+
 .jupyter-widgets label {
-    width: auto;
+    width: auto !important;
 }
 
 .jupyter-widgets .widget-readout {

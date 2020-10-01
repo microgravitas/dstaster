@@ -5,6 +5,7 @@ import matplotlib as mpl
 
 from sklearn.metrics import confusion_matrix
 
+
 # Settings
 mpl.rcParams.update({
     "legend.fancybox": False
