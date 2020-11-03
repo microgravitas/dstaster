@@ -58,7 +58,7 @@ def plot_confusion_matrix(truth, pred, labels, ax, cmap=None):
                 continue
             p = C[j,i]
             text = ax.text(i, j, "{:.1f}%".format(p*100),
-                       ha="center", va="center", color='white', fontsize=12)
+                       ha="center", va="center", color='white', fontsize=14)
 
     # labels, title and ticks
     ax.set_xlabel('Predicted label');
@@ -69,6 +69,6 @@ def plot_confusion_matrix(truth, pred, labels, ax, cmap=None):
     ax.yaxis.set_ticklabels(labels)
 
     # Hide spines and tick lines
-    for s in ax.spines:
-        ax.spines[s].set_visible(False)
+    # for s in ax.spines:
+    #     ax.spines[s].set_visible(False)
     ax.tick_params(axis='both', which='both', length=0, pad=7)
